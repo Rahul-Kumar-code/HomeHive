@@ -1,0 +1,34 @@
+<header>
+  <div class="bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] flex gap-16 text-white leading-6 h-16 text-2xl p-5">
+    <a href="/" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/') ? 'font-bold text-shadow-custom' : '' %> ">
+      HomeHive
+    </a>
+
+    <div class="grid grid-cols-2 w-full">
+      <div class="grid grid-cols-3">
+        <a href="/homes" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">
+          Homes-List
+        </a>
+        <a href="/bookings" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">
+          Bookings
+        </a>
+        <a href="/favourites" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">
+          Favourites
+        </a>
+      </div>
+      <div class="grid grid-cols-2">
+        <a href="/host-home-list" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">
+          Your Homes
+        </a>
+        <a href="/add-home" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">
+          Add Home
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+  .text-shadow-custom {
+    text-shadow: 0px 0px 6px rgb(4, 213, 246);
+  }
+</style>

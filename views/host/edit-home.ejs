@@ -1,0 +1,76 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="/addHome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="flex justify-center  min-h-64 bg-gray-100">
+    <div class="container max-w-md bg-white rounded-xl shadow-lg  text-center">
+      <h1 class="text-3xl font-bold mb-5 bg-gradient-to-l from-purple-700 to-blue-600 bg-clip-text text-transparent">
+        <%=(editing)?'Edit':'Register'%>
+        Your Home on HomeHive</h1>
+      <form action="/<%=editing?"edit-home":"add-home"%>" method="post" class="space-y-2">
+        <input type="hidden" name="id" value="<%=editing?home._id:''%>">
+        <input
+          type="text"
+          name="homename"
+          value="<%=editing?home.homename:''%>"
+          placeholder="Enter Your Home Name"
+          required
+          class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+        >
+        <input
+        type="text"
+        name="homeImg"
+        value="<%=editing?home.homeImg:''%>"
+        placeholder="Enter link of Home image"
+        required
+        class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+      >
+        <input
+          type="text"
+          name="location"
+          value="<%=editing?home.location:''%>"
+          placeholder="Enter Location Of Home"
+          required
+          class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+        >
+        <input
+          type="number"
+          name="price"
+          value="<%=editing?home.price:''%>"
+          placeholder="Enter price per night"
+          required
+          class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+        >
+        <input
+          type="number"
+          name="rating"
+          value="<%=editing?home.rating:''%>"
+          placeholder="Enter Rating"
+          inputmode="decimal" 
+           pattern="[0-9]*[.,]?[0-9]*"
+          required
+          class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+        >
+        <textarea
+          name="description"
+          placeholder="Describe your home"
+          class="w-full p-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-400"
+        ><%= editing ? home.description : '' %></textarea>
+        <input
+          type="submit"
+          value="<%=editing?"Update Home" : "Add Home"%>"
+          class="<%=editing?"submit text-xl w-full bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white py-3 rounded-lg hover:opacity-75 hover:shadow-lg cursor-pointer" : "submit text-xl w-full hover:opacity-75 hover:shadow-lg bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white py-3 cursor-pointer"%>"
+        >
+      </form>
+    </div>
+  </main>
+
+  
+  
+  
+</body>
+</html>

@@ -1,0 +1,45 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="flex justify-center p-10">
+    <div class="flex flex-col text-[40px] justify-center items-center">
+    <h1 class="bg-[linear-gradient(-60deg,#9d00ff,#0080ff)] bg-clip-text text-transparent text-center font-semibold"><%= bookedHomes.length === 0 ? 'No Bookings' : 'My Bookings'%></h1>
+    <ul class="cards">
+      <% bookedHomes.forEach(home => { %>
+        <li>
+          <div class="box w-fit h-fit">
+            <img src="<%= home.homeImg %>">
+            <div class="nameData">
+              <div class="div">
+                <%= home.homename %>
+              </div>
+              <div class="div">
+                <span class="fa fa-star"></span>
+                <%= home.rating %>
+              </div>
+            </div>
+            <div class="otherdata">
+              <div class="location">
+                <%= home.location %>
+              </div>
+              <div class="price">
+                ₹<%= home.price %> night
+              </div>
+              <div class="buttons">
+              <form action="/bookings/cancel/<%=home._id%>" method="post">
+                <button class="remove hover:scale-105 hover:shadow-lg hover:opacity-75" type="submit">Cancel</button>
+              </form>
+              <button class="bt mt-2 bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white px-3 py-1 rounded-lg transition-colors font-semibold hover:scale-105 hover:shadow-lg hover:opacity-75">Details</button>
+            </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

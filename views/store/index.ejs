@@ -1,0 +1,40 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h1 class="head1 text-3xl font-semibold border-2 shadow-2xl w-fit p-5 ">
+       Welcome To HomeHive
+    </h1>
+    <ul class="cards">
+      <% registeredHomes.forEach(home => { %>
+        <li>
+          <div class="box w-fit h-fit">
+            <img src="<%= home.homeImg %>">
+            <div class="nameData">
+              <div class="div">
+                <%= home.homename %>
+              </div>
+              <div class="div">
+                <span class="fa fa-star"></span>
+                <%= home.rating %>
+              </div>
+            </div>
+            <div class="otherdata">
+              <div class="location">
+                <%= home.location %>
+              </div>
+              <div class="price">
+                ₹<%= home.price %> night
+              </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="bg-gray-100">
+  <%- include('../partials/header') %>
+
+  <main class="container mx-auto px-4 py-10">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+      <!-- Home Title -->
+      <h1 class="text-4xl font-extrabold mb-6 text-gray-900">
+        <%= home.homename %>
+      </h1>
+
+      <!-- Image Section -->
+      <div class="relative w-full">
+        <img src="<%= home.homeImg %>" 
+             class="w-full h-[450px] object-cover rounded-xl shadow-md transition-transform" 
+             style="image-rendering: crisp-edges;">
+      </div>
+
+      <!-- Home Info -->
+      <div class="mt-6 flex flex-col space-y-6 bg-gray-50 p-6 rounded-lg">
+        <!-- Ratings & Location -->
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <span class="fa fa-star text-yellow-500"></span>
+              <span><%= home.rating %></span>
+            </div>
+            <div class="text-gray-600 text-lg">
+              <i class="fa fa-map-marker text-red-500"></i> <%= home.location %>
+            </div>
+          </div>
+          
+          <!-- Price -->
+          <div class="text-right">
+            <div class="font-bold text-2xl text-gray-900">
+              ₹<%= home.price %> <span class="text-gray-600 font-normal text-lg">/ night</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">About this Home</h2>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            <%= home.description %>
+          </p>
+        </div>
+
+        <!-- Book Now Button -->
+        <div class="flex justify-center mt-4">
+          <form action="/bookings" method="post">
+          <button type="submit" class="bg-gradient-to-r from-purple-600 to-blue-500 px-12 py-4 text-lg rounded-lg text-white font-semibold shadow-md transition-transform hover:scale-105 hover:shadow-lg">
+            Book Now
+          </button>
+          <input type="hidden" name="id" value="<%= home._id %>">
+        </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

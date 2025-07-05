@@ -1,0 +1,52 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h1 class="favhead text-3xl font-semibold border-2 shadow-2xl w-fit p-5">
+      <%= favouriteHomes.length === 0 ? 'No Favourites' : 'Your Favourite List '%>
+    </h1>
+    <ul class="cards">
+      <% favouriteHomes.forEach(home => { %>
+        <li>
+          <div class="box w-fit h-fit">
+            <img src="<%= home.homeImg %>">
+            <div class="nameData">
+              <div class="div">
+                <%= home.homename %>
+              </div>
+              <div class="div">
+                <span class="fa fa-star"></span>
+                <%= home.rating %>
+              </div>
+            </div>
+            <div class="otherdata">
+              <div class="location">
+                <%= home.location %>
+              </div>
+              <div class="price">
+                ₹<%= home.price %> night
+              </div>
+              <div class="buttons">
+                <div class="div1">
+              <form action="/favourites/delete/<%=home._id%>" method="post">
+                <button class="remove hover:scale-105 hover:shadow-lg hover:opacity-75" type="submit">Remove</button>
+              </form></div>
+              <div class="div2">
+              <form action="/bookings" method="post">
+              <button type="submit" class="bt hover:scale-105 hover:shadow-lg hover:opacity-75">
+                Book Now
+              </button></div>
+              <input type="hidden" name="id" value="<%= home._id %>">
+            </form>
+            </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h1 class="head1 text-3xl font-semibold border-2 shadow-2xl w-fit p-5 ">
+      <%= registeredHomes.length === 0 ? 'No Home Available' : 'Registered Homes'%>
+    </h1>
+    <ul class="cards">
+      <% registeredHomes.forEach(home => { %>
+        <li>
+          <div class="box w-fit h-fit">
+            <img src="<%= home.homeImg %>">
+            <div class="nameData">
+              <div class="div">
+                <%= home.homename %>
+              </div>
+              <div class="div">
+                <span class="fa fa-star"></span>
+                <%= home.rating %>
+              </div>
+            </div>
+            <div class="otherdata">
+              <div class="location">
+                <%= home.location %>
+              </div>
+              <div class="price">
+                ₹<%= home.price %> night
+              </div>
+              <div class="grid grid-cols-2 gap-6">
+                <%-include('../partials/favourite',{home: home})%>
+                <a  class="mt-2 bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white px-3 py-4 rounded-lg transition-colors font-semibold hover:scale-105 hover:shadow-lg hover:opacity-75"  href="/homes/<%= home._id %>">Details</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="hostHome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h1 class="head1 text-3xl font-semibold border-2 shadow-2xl w-fit p-5 ">
+      <%= registeredHomes.length === 0 ? 'No Home Added' : 'Your Homes List'%>
+    </h1>
+    <ul class="cards">
+      <% registeredHomes.forEach(home => { %>
+        <li>
+          <div class="box w-fit h-fit">
+            <img src="<%= home.homeImg %>">
+            <div class="nameData">
+              <div class="div">
+                <%= home.homename %>
+              </div>
+              <div class="div">
+                <span class="fa fa-star"></span>
+                <%= home.rating %>
+              </div>
+            </div>
+            <div class="otherdata">
+              <div class="location">
+                <%= home.location %>
+              </div>
+              <div class="price">
+                ₹<%= home.price %> night
+              </div>
+              <div class="buttons grid grid-cols-2 w-full">
+                <form action="/host/delete-home/<%=home._id%>" method="post">
+                <button type="submit" class="bt delete hover:scale-105 hover:shadow-lg hover:opacity-75">Delete</button>
+              </form>
+                <a href="/host/edit-home/<%=home._id%>?editing=true" class="bt edit hover:scale-105 hover:shadow-lg hover:opacity-75">Edit</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>
