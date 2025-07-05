@@ -55,11 +55,23 @@ font-weight: 500;
 }
 .head1{
   margin: 10px;
+  margin-bottom: 14px;
   background: linear-gradient(-60deg, rgb(140, 0, 255), rgb(0, 47, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border: 3px solid transparent;
   box-shadow: 0px 0px 7px rgb(4, 77, 249);
+  border-radius: 15px;
+  border-image-slice: 1;
+}
+.head2{
+  margin: 10px;
+  margin-bottom: 14px;
+  background:linear-gradient(to right, #4800ff, #8459f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: 3px solid transparent;
+  box-shadow: 0px 0px 7px rgb(48, 26, 242);
   border-radius: 15px;
   border-image-slice: 1;
 }

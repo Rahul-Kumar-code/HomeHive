@@ -1,34 +1,52 @@
-<header>
-  <div class="bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] flex gap-16 text-white leading-6 h-16 text-2xl p-5">
-    <a href="/" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/') ? 'font-bold text-shadow-custom' : '' %> ">
+<header class="bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white">
+  <div class="flex items-center justify-between px-5 h-16">
+    <!-- Logo -->
+    <a href="/" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/') ? 'font-bold text-shadow-custom' : '' %> text-2xl">
       HomeHive
     </a>
 
-    <div class="grid grid-cols-2 w-full">
-      <div class="grid grid-cols-3">
-        <a href="/homes" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">
-          Homes-List
-        </a>
-        <a href="/bookings" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">
-          Bookings
-        </a>
-        <a href="/favourites" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">
-          Favourites
-        </a>
+    <!-- Hamburger Icon for Mobile -->
+    <button id="menu-btn" class="md:hidden text-white text-3xl focus:outline-none">
+      &#9776; <!-- ☰ -->
+    </button>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex gap-16 text-2xl">
+      <div class="flex gap-8">
+        <a href="/homes" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">Homes-List</a>
+        <a href="/bookings" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">Bookings</a>
+        <a href="/favourites" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">Favourites</a>
       </div>
-      <div class="grid grid-cols-2">
-        <a href="/host-home-list" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">
-          Your Homes
-        </a>
-        <a href="/add-home" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">
-          Add Home
-        </a>
+      <div class="flex gap-8">
+        <a href="/host-home-list" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">Your Homes</a>
+        <a href="/add-home" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">Add Home</a>
       </div>
-    </div>
+    </nav>
   </div>
+
+  <!-- Mobile Navigation (hidden by default) -->
+  <div id="mobile-menu" class="md:hidden hidden flex flex-col text-xl px-5 py-4 bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))]">
+  <a href="/homes" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">Homes-List</a>
+  <a href="/bookings" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">Bookings</a>
+  <a href="/favourites" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">Favourites</a>
+  <a href="/host-home-list" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">Your Homes</a>
+  <a href="/add-home" class="py-2 border-t border-b border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">Add Home</a>
+</div>
 </header>
+
+<!-- Styles -->
 <style>
   .text-shadow-custom {
     text-shadow: 0px 0px 6px rgb(4, 213, 246);
   }
 </style>
+
+<!-- Script to Toggle Menu -->
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
