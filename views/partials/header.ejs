@@ -1,37 +1,144 @@
-<header class="bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white">
+<header
+  class="bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white"
+>
   <div class="flex items-center justify-between px-5 h-16">
     <!-- Logo -->
-    <a href="/" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/') ? 'font-bold text-shadow-custom' : '' %> text-2xl">
+    <a
+      href="/"
+      class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/') ? 'font-bold text-shadow-custom' : '' %> text-2xl"
+    >
       HomeHive
     </a>
 
     <!-- Hamburger Icon for Mobile -->
-    <button id="menu-btn" class="md:hidden text-white text-3xl focus:outline-none">
-      &#9776; <!-- ☰ -->
+    <button
+      id="menu-btn"
+      class="md:hidden text-white text-3xl focus:outline-none"
+    >
+      &#9776;
+      <!-- ☰ -->
     </button>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex gap-16 text-2xl">
       <div class="flex gap-8">
-        <a href="/homes" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">Homes-List</a>
-        <a href="/bookings" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">Bookings</a>
-        <a href="/favourites" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">Favourites</a>
+        <% if (isLoggedIn) {%>
+          <% if (user && user.userType === 'guest') {%>
+        <a
+          href="/homes"
+          class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>"
+          >Homes</a
+        >
+        <a
+          href="/bookings"
+          class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>"
+          >Bookings</a
+        >
+        <a
+          href="/favourites"
+          class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>"
+          >Favourites</a
+        >
       </div>
+      <% } else {%>
       <div class="flex gap-8">
-        <a href="/host-home-list" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">Your Homes</a>
-        <a href="/add-home" class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">Add Home</a>
+        <a
+          href="/host-home-list"
+          class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>"
+          >Your Homes</a
+        >
+        <a
+          href="/add-home"
+          class="<%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>"
+          >Add Home</a
+        >
+        <% }%>
+        <%}%> <% if (!isLoggedIn) {%>
+        <a
+          href="/login"
+          class="bg-white text-blue-600 font-medium py-1 px-3 rounded-md shadow-md hover:scale-105 transition duration-300"
+        >
+          Login
+        </a>
+        <a
+          href="/signup"
+          class="bg-white text-blue-600 font-medium py-1 px-3 rounded-md shadow-md hover:scale-105 transition duration-300"
+        >
+          Sign Up
+        </a>
+        <% } else {%>
+        <form action="/logout" method="post">
+          <button
+            type="submit"
+            class="text-white bg-gradient-to-r from-red-400 to-red-600 bg-[length:200%_100%] bg-left hover:bg-right font-medium py-1 px-3 rounded-md shadow-md transition-all duration-300 ease-in-out"
+          >
+            Logout
+          </button>
+        </form>
+        <% } %>
       </div>
     </nav>
   </div>
 
   <!-- Mobile Navigation (hidden by default) -->
-  <div id="mobile-menu" class="md:hidden hidden flex flex-col text-xl px-5 py-4 bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))]">
-  <a href="/homes" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>">Homes-List</a>
-  <a href="/bookings" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>">Bookings</a>
-  <a href="/favourites" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>">Favourites</a>
-  <a href="/host-home-list" class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>">Your Homes</a>
-  <a href="/add-home" class="py-2 border-t border-b border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>">Add Home</a>
-</div>
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden flex flex-col text-xl px-5 py-4 bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))]"
+  >
+    <% if (isLoggedIn) { %>
+      <% if (user && user.userType === 'guest') { %>
+        <a
+          href="/homes"
+          class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/homes') ? 'font-bold text-shadow-custom' : '' %>"
+          >Homes</a
+        >
+        <a
+          href="/bookings"
+          class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/bookings') ? 'font-bold text-shadow-custom' : '' %>"
+          >Bookings</a
+        >
+        <a
+          href="/favourites"
+          class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/favourites') ? 'font-bold text-shadow-custom' : '' %>"
+          >Favourites</a
+        >
+      <% } else { %>
+        <a
+          href="/host-home-list"
+          class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/host-home-list') ? 'font-bold text-shadow-custom' : '' %>"
+          >Your Homes</a
+        >
+        <a
+          href="/add-home"
+          class="py-2 border-t border-white <%= (typeof currentUrl !== 'undefined' && currentUrl === '/add-home') ? 'font-bold text-shadow-custom' : '' %>"
+          >Add Home</a
+        >
+      <% } %>
+      <form action="/logout" method="post" class="mt-4">
+        <button
+          type="submit"
+          class="w-full text-center text-white bg-gradient-to-r from-red-400 to-red-600 bg-[length:200%_100%] bg-left hover:bg-right font-medium py-2 px-3 rounded-md shadow-md transition-all duration-300 ease-in-out"
+        >
+          Logout
+        </button>
+      </form>
+    <% } else { %>
+      <div class="flex flex-col gap-4 mt-4">
+        <a
+          href="/login"
+          class="text-center bg-white text-blue-600 font-medium py-2 px-3 rounded-md shadow-md hover:scale-105 transition duration-300"
+        >
+          Login
+        </a>
+        <a
+          href="/signup"
+          class="text-center bg-white text-blue-600 font-medium py-2 px-3 rounded-md shadow-md hover:scale-105 transition duration-300"
+        >
+          Sign Up
+        </a>
+      </div>
+    <% } %>
+  </div>
 </header>
 
 <!-- Styles -->
@@ -43,10 +150,10 @@
 
 <!-- Script to Toggle Menu -->
 <script>
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
   });
 </script>

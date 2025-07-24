@@ -1,8 +1,7 @@
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
- 
-const MongoUrl = process.env.MONGODB_URI;
 
+const MongoUrl = process.env.MONGODB_URI;
 
 let _db;
 

@@ -1,0 +1,68 @@
+<%- include('../partials/headtag') %>
+<link rel="stylesheet" href="/addHome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="flex justify-center min-h-64 bg-gray-100">
+    <div class="container max-w-md bg-white rounded-xl shadow-lg  text-center">
+      <h1 class="text-3xl font-bold mb-5 bg-gradient-to-l from-purple-700 to-blue-600 bg-clip-text text-transparent">Login Here</h1>
+      <% if (successMessage.length > 0) { %>
+  <div class="bg-green-100 text-green-800 px-4 py-2 rounded-md mb-4">
+    <%= successMessage[0] %>
+  </div>
+<% } %>
+      <form action="/login" method="post" class="space-y-2">
+        <%- include('../partials/error') %>
+       <div class="relative">
+        <i class="fa fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-purple-700 text-lg opacity-70"></i>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value="<%= oldInput.email ? oldInput.email : '' %>"
+          required
+          autocomplete="email"
+          class="w-full pl-10 py-3 pr-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400"
+        >
+      </div>
+
+       <div class="relative">
+        <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-purple-700 text-lg opacity-70"></i>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          autocomplete="new-password"
+          class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400"
+        >
+        <i id="togglePassword" class="fa fa-eye-slash absolute right-3 top-1/2 -translate-y-1/2 text-purple-400 cursor-pointer"></i>
+      </div>
+        <p>
+          <span>Don't have an account? <a href="/signup" class="text-blue-500 hover:underline">Sign Up</a> </span>
+        </p>
+        <input
+          type="submit"
+          value="Sign In"
+          class="submit text-xl w-full hover:opacity-75 hover:shadow-lg bg-[linear-gradient(-60deg,rgb(157,0,255),rgb(0,128,255))] text-white py-3 cursor-pointer"%>"
+        >
+      </form>
+    </div>
+  </main>
+</body>
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+    this.classList.toggle("fa-eye");
+    this.classList.toggle("fa-eye-slash");
+  });
+</script>
+</html>

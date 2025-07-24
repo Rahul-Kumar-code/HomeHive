@@ -2,11 +2,15 @@ const Home = require('../models/home');
 
 exports.getAddHome=(req, res, next)=>{
   console.log(req.url,req.method);
- res.render('host/edit-home',{pageTitle: 'HomeHive | Add Home',editing: false,currentUrl: req.path});
+ res.render('host/edit-home',{pageTitle: 'HomeHive | Add Home',editing: false,currentUrl: req.path,  isLoggedIn: req.isLoggedIn,
+  user: req.session.user,
+ });
 }
 exports.getHosthome = (req, res, next)=>{
   Home.fetchAll().then(registeredHomes=>{
-    res.render('host/host-home-list',{registeredHomes,pageTitle:'HomeHive | host homes',currentUrl: req.path});
+    res.render('host/host-home-list',{registeredHomes,pageTitle:'HomeHive | host homes',currentUrl: req.path,  isLoggedIn: req.isLoggedIn,
+    user: req.session.user,
+    });
   });
 }
 exports.getEditHome = (req, res, next)=>{
@@ -16,7 +20,9 @@ exports.getEditHome = (req, res, next)=>{
     if(!home){
       return res.redirect('/host-home-list');
     }
-    res.render('host/edit-home',{home:home,editing:editing,pageTitle: "HomeHive | edit home",currentUrl: '/host-home-list'});
+    res.render('host/edit-home',{home:home,editing:editing,pageTitle: "HomeHive | edit home",currentUrl: '/host-home-list', isLoggedIn: req.isLoggedIn,
+      user: req.session.user,
+    });
   });
 }
 
